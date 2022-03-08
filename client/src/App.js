@@ -5,7 +5,7 @@ import Axios from "axios";
 
 function App() {
   const handleClickCadastro = (values) => {
-    Axios.post("http://localhost:3001/register", {
+    Axios.post("http://localhost:3001/login", {
       email: values.email,
       password: values.password,
     }).then((response) => {
