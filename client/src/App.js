@@ -1,10 +1,19 @@
 import "./App.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
-import Axios from "Axios"
+import Axios from "axios";
 
 function App() {
-  const handleClickCadastro = (values) => {};
+  const handleClickCadastro = (values) => {
+    Axios.post("http://localhost:3001/register", {
+      email: values.email,
+      password: values.password,
+    }).then((response) => {
+      console.log(response);
+    });
+  };
+  const handleClickLogin = (values) => console.log(values);
+
   const validationCadastro = yup.object().shape({
     email: yup
       .string()
@@ -19,7 +28,6 @@ function App() {
       .oneOf([yup.ref("password"), null], "As senhas não são iguais"),
   });
 
-  const handleClickLogin = (values) => console.log(values);
   const validationLogin = yup.object().shape({
     email: yup
       .string()
@@ -32,89 +40,92 @@ function App() {
   });
 
   return (
-    <div className="container">
-      <h1>Login</h1>
-      <Formik
-        initialValues={{}}
-        onSubmit={handleClickLogin}
-        validationSchema={validationLogin}
-      >
-        <Form className="login-form">
-          <div className="login-form-group">
-            <Field name="email" className="form-field" placeholder="Email" />
-            <ErrorMessage
-              component="span"
-              name="email"
-              className="form-error"
-            />
-          </div>
+    <div className="app">
+      <div className="container">
+        <h1>Login</h1>
+        <Formik
+          initialValues={{}}
+          onSubmit={handleClickLogin}
+          validationSchema={validationLogin}
+        >
+          <Form className="login-form">
+            <div className="login-form-group">
+              <Field name="email" className="form-field" placeholder="Email" />
+              <ErrorMessage
+                component="span"
+                name="email"
+                className="form-error"
+              />
+            </div>
 
-          <div className="login-form-group">
-            <Field
-              name="password"
-              className="form-field"
-              placeholder="Password"
-            />
-            <ErrorMessage
-              component="span"
-              name="password"
-              className="form-error"
-            />
-          </div>
+            <div className="login-form-group">
+              <Field
+                name="password"
+                className="form-field"
+                placeholder="Password"
+              />
+              <ErrorMessage
+                component="span"
+                name="password"
+                className="form-error"
+              />
+            </div>
 
-          <button className="button" type="submit">
-            Login
-          </button>
-        </Form>
-      </Formik>
+            <button className="button" type="submit">
+              Login
+            </button>
+          </Form>
+        </Formik>
+      </div>
+      <div className="container">
+        <h1>Cadastro</h1>
+        <Formik
+          initialValues={{}}
+          onSubmit={handleClickCadastro}
+          validationSchema={validationCadastro}
+        >
+          <Form className="login-form">
+            <div className="login-form-group">
+              <Field name="email" className="form-field" placeholder="Email" />
+              <ErrorMessage
+                component="span"
+                name="email"
+                className="form-error"
+              />
+            </div>
 
-      <h1>Cadastro</h1>
-      <Formik
-        initialValues={{}}
-        onSubmit={handleClickCadastro}
-        validationSchema={validationCadastro}
-      >
-        <Form className="login-form">
-          <div className="login-form-group">
-            <Field name="email" className="form-field" placeholder="Email" />
-            <ErrorMessage
-              component="span"
-              name="email"
-              className="form-error"
-            />
-          </div>
+            <div className="login-form-group">
+              <Field
+                name="password"
+                className="form-field"
+                placeholder="Password"
+              />
+              <ErrorMessage
+                component="span"
+                name="password"
+                className="form-error"
+              />
+            </div>
 
-          <div className="login-form-group">
-            <Field
-              name="password"
-              className="form-field"
-              placeholder="Password"
-            />
-            <ErrorMessage
-              component="span"
-              name="password"
-              className="form-error"
-            />
-          </div>
+            <div className="login-form-group">
+              <Field
+                name="confirmPassword"
+                className="form-field"
+                placeholder="Confirm your password"
+              />
+              <ErrorMessage
+                component="span"
+                name="confirmPassword"
+                className="form-error"
+              />
+            </div>
 
-          <div className="login-form-group">
-            <Field
-              name="confirmPassword"
-              className="form-field"
-              placeholder="Confirm your password"
-            />
-            <ErrorMessage
-              component="span"
-              name="confirmPassword"
-              className="form-error"
-            />
-          </div>
-
-          <button className="button" type="submit">
-            Cadastrar
-          </button>
-        </Form>
-      </Formik>
+            <button className="button" type="submit">
+              Cadastrar
+            </button>
+          </Form>
+        </Formik>
+      </div>
     </div>
   );
 }

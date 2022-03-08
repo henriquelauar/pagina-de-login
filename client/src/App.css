@@ -1,7 +1,17 @@
+body {
+    background-color: #102E3B;
+}
+
+.app {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 .container {
-    width: 200px;
+    width: 20%;
     height: max-content;
-    margin: auto;
     margin-top: 120px;
     background-color: #ebebeb;
     padding: 20px;
@@ -14,6 +24,7 @@ h1 {
     margin: 0;
     text-align: left;
     margin-bottom: 10px;
+    font-size: larger;
 }
 
 .login-form {
@@ -24,16 +35,30 @@ h1 {
     display: inline-block;
     padding: 5px;
     margin-top: 20px;
+    width: 80%;
+    border-color: #102E3B;
 }
 
 .form-error {
     display: block;
     color: rgb(237, 67, 55);
-    font-size: 0.9em;
+    font-size: 0.8em;
+    font-weight: 500;
 }
 
 .button {
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 5px 10px;
+    background-color: #102E3B;
+    border: none;
+    border-radius: 5px;
+    color: #FCF4F6;
+    font-weight: 600;
+}
+
+.button:hover {
+    background-color: green;
+    transition-duration: 800ms;
+    transition-delay: 100ms;
 }
